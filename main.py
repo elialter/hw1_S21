@@ -184,7 +184,7 @@ def map_problem_experiments():
 def run_all_experiments():
     print('Running all experiments')
     toy_map_problem_experiment()
-    map_problem_experiments()
+#    map_problem_experiments()
 
 
 if __name__ == '__main__':
