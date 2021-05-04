@@ -80,12 +80,12 @@ class Link:
     # TODO [Ex.8]:
     # Compute and return the scheduled driving time based on the given max_speed
     def compute_scheduled_time(self):
-        raise NotImplementedError  # TODO: remove this line!
+        return self.distance / self.max_speed
 
     # TODO [Ex.8]:
     # Compute and return the current driving time based on the given current_speed
     def compute_current_time(self):
-        raise NotImplementedError  # TODO: remove this line!
+        return self.distance / self.current_speed  # TODO: remove this line!
 
 
 @dataclass
