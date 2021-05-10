@@ -148,9 +148,13 @@ def map_problem_experiments():
     # TODO [Ex.16]: create an instance of `AStar` with the `NullHeuristic` (implemented in 
     #       `framework\graph_search\graph_problem_interface.py`),
     #       solve the same `map_problem` with it and print the results (as before).
+
+    a_star = AStar(NullHeuristic)
+    res = a_star.solve_problem(map_problem)
+    print(res)
+
     # Notice: AStar constructor receives the heuristic *type* (ex: `MyHeuristicClass`),
     #         and NOT an instance of the heuristic (eg: not `MyHeuristicClass()`).
-    exit()  # TODO: remove!
 
     # TODO [Ex.18]: create an instance of `AStar` with the `TimeBasedAirDistHeuristic`,
     #       and use the default value for the heuristic_weight,  

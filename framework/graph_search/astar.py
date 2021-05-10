@@ -49,7 +49,10 @@ class AStar(BestFirstSearch):
         Remember: In Weighted-A* the f-score is defined by ((1-w) * cost) + (w * h(state)).
         Notice: You may use `search_node.g_cost`, `self.heuristic_weight`, and `self.heuristic_function`.
         """
-        h_value = self.heuristic_function(search_node)
+        if self.heuristic_function_type is not NullHeuristic:
+            h_value = self.heuristic_function(search_node)
+        else:
+            h_value = 0
         return (1 - self.heuristic_weight) * search_node.cost + self.heuristic_weight * h_value
 
 
