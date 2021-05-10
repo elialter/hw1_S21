@@ -108,8 +108,11 @@ class MapProblem(GraphProblem):
         #  Finish the implementation of this method.
         #  Iterate over the outgoing links of the current junction (find the implementation of `Junction`
         #  type to see the exact field name to access the outgoing links). For each link:
-        junction_generator = (for junc in junction.outgoing_links)
-        for next_junction in junction_generator:
+
+        if self.cost_func_name is None:
+            yield None
+
+        for next_junction in junction.outgoing_links:
             #    (1) Create the successor state (it should be an instance of class `MapState`). This state represents the
             #        target junction of the current link;
             next_state = MapState(next_junction.target)
@@ -133,7 +136,7 @@ class MapProblem(GraphProblem):
         #        `my_variable_to_check is None`, and particularly do NOT use comparison (==).
 
 
-        yield OperatorResult(successor_state=MapState(self.target_junction_id), operator_cost=7)  # TODO: remove this line!
+ #       yield OperatorResult(successor_state=MapState(self.target_junction_id), operator_cost=7)  # TODO: remove this line!
 
     def is_goal(self, state: GraphProblemState) -> bool:
         """
