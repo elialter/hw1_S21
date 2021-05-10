@@ -127,6 +127,16 @@ def map_problem_experiments():
     target_point = 549
     start_point = 82700
 
+    map_problem = MapProblem(streets_map, start_point, target_point, 'current_time')
+
+    ucs = UniformCost()
+    res = ucs.solve_problem(map_problem)
+    print(res)
+
+    # save visualization of the path
+    file_path = os.path.join(Consts.IMAGES_PATH, 'UCS_path_time_based.png')
+    streets_map.visualize(path=res, file_path=file_path)
+
     # TODO [Ex.12]: 1. create an instance of `MapProblem` with a current_time-based operator cost
     #           with the start point `start_point` and the target point `target_point`
     #           and name it `map_problem`.
@@ -134,7 +144,6 @@ def map_problem_experiments():
     #           solve the `map_problem` with it and print the results.
     #       3. save the visualization of the path in 'images/UCS_path_time_based.png'
     # You can use the code in the function 'toy_map_problem_experiment' for help.
-    exit()  # TODO: remove!
 
     # TODO [Ex.16]: create an instance of `AStar` with the `NullHeuristic` (implemented in 
     #       `framework\graph_search\graph_problem_interface.py`),
@@ -184,7 +193,7 @@ def map_problem_experiments():
 def run_all_experiments():
     print('Running all experiments')
     toy_map_problem_experiment()
-#    map_problem_experiments()
+    map_problem_experiments()
 
 
 if __name__ == '__main__':
