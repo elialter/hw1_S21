@@ -188,5 +188,4 @@ def run_all_experiments():
 
 
 if __name__ == '__main__':
-    print("prin!!!")
     run_all_experiments()

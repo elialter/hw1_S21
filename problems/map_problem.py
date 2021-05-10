@@ -108,8 +108,21 @@ class MapProblem(GraphProblem):
         #  Finish the implementation of this method.
         #  Iterate over the outgoing links of the current junction (find the implementation of `Junction`
         #  type to see the exact field name to access the outgoing links). For each link:
-        #    (1) Create the successor state (it should be an instance of class `MapState`). This state represents the
-        #        target junction of the current link;
+        junction_generator = (for junc in junction.outgoing_links)
+        for next_junction in junction_generator:
+            #    (1) Create the successor state (it should be an instance of class `MapState`). This state represents the
+            #        target junction of the current link;
+            next_state = MapState(next_junction.target)
+
+            if self.cost_func_name == "distance":
+                yield OperatorResult(next_state, next_junction.distance)
+
+            if self.cost_func_name == "scheduled_time":
+                yield OperatorResult(next_state, next_junction.compute_scheduled_time())
+
+            if self.cost_func_name == "current_time":
+                yield OperatorResult(next_state, next_junction.compute_current_time())
+
         #    (2) Yield an object of type `OperatorResult` with the successor state and the operator cost (which depends
         #        on the variable class `self.cost_func_name`). You don't have to specify the operator name here.
         #        Use:
@@ -119,6 +132,7 @@ class MapProblem(GraphProblem):
         #  Note: Generally, in order to check whether a variable is set to None you should use the expression:
         #        `my_variable_to_check is None`, and particularly do NOT use comparison (==).
 
+
         yield OperatorResult(successor_state=MapState(self.target_junction_id), operator_cost=7)  # TODO: remove this line!
 
     def is_goal(self, state: GraphProblemState) -> bool:
@@ -127,8 +141,8 @@ class MapProblem(GraphProblem):
         """
         assert (isinstance(state, MapState))
 
-        # TODO [Ex.9]: modify the returned value to indicate whether `state` is a final state.
+        # TODO [Ex.9]: modify the returned value to indicate whether `state` is a final state.-------------DONE
         # You may use the problem's input parameters (stored as fields of this object by the constructor).
         
-        return state.junction_id == 14593  # TODO: modify this!
+        return state.junction_id == self.target_junction_id # TODO: modify this!
         
