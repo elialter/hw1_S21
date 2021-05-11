@@ -33,7 +33,6 @@ class TimeBasedAirDistHeuristic(HeuristicFunction):
         return air_distance / MAX_ROADS_SPEED
 
 
-
 class ShortestPathsBasedHeuristic(HeuristicFunction):
     heuristic_name = 'ShortestPathsBased'
 
@@ -42,6 +41,7 @@ class ShortestPathsBasedHeuristic(HeuristicFunction):
         assert isinstance(state, MapState)
         
         return self.problem.time_to_goal_shortest_paths_based_data[state.junction_id]
+
 
 class HistoryBasedHeuristic(HeuristicFunction):
     heuristic_name = 'HistoryBased'
