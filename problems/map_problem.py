@@ -67,7 +67,7 @@ class MapProblem(GraphProblem):
         # extract the data matching to self.target_junction_id and convert to np.array.
         # note: you can extract the data of a single column named 'name' from a pd.DataFrame 'df' by: df['name']
         data = df[str(self.target_junction_id)].to_numpy()
-        
+
         self.time_to_goal_shortest_paths_based_data = data # assign the data
 
     def set_additional_history_based_data(self):
@@ -84,8 +84,10 @@ class MapProblem(GraphProblem):
         #                   Note: the result should be of type np.array.
         #                           you can convert a pd.DataFrame to np.array using pd.DataFrame.to_numpy()
         days_of_the_week = ['Sun', 'Mon', 'Tue', 'Wed'] # optional variable
-        raise NotImplementedError  # TODO: remove this line!
-
+        history_file_path = os.path.join(Consts.DATA_PATH, 'history_4_days_target_549.csv')
+        df = pd.read_csv(history_file_path)
+        mean_frame = df.mean(axis=1)
+        self.time_to_goal_history_based_data = mean_frame.to_numpy()
 
         assert(type(self.time_to_goal_history_based_data) is np.ndarray) # self-check
 

@@ -191,14 +191,20 @@ def map_problem_experiments():
     #                   For more info see `problems/map_problem.py`.
     #               2. create an instance of `AStar` with the `ShortestPathsBasedHeuristic`,
     #                  solve the same `map_problem` with it and print the results (as before).
-    exit()  # TODO: remove!
-    
+    map_problem.set_additional_shortest_paths_based_data()
+    a_star = AStar(ShortestPathsBasedHeuristic)
+    res = a_star.solve_problem(map_problem)
+    print(res)
+
     # TODO [Ex.25]: 1. Call the function set_additional_history_based_data()
     #                   to set the additional history-based data in `map_problem`.
     #                   For more info see `problems/map_problem.py`.
     #               2. create an instance of `AStar` with the `HistoryBasedHeuristic`,
     #                   solve the same `map_problem` with it and print the results (as before).
-    exit()  # TODO: remove!
+    map_problem.set_additional_history_based_data()
+    a_star = AStar(HistoryBasedHeuristic)
+    res = a_star.solve_problem(map_problem)
+    print(res)
 
     # Try using A*eps to improve the speed (#dev) with a non-acceptable heuristic.
     # TODO [Ex.29]: Create an instance of `AStarEpsilon` with the `ShortestPathsBasedHeuristic`.
@@ -206,8 +212,12 @@ def map_problem_experiments():
     #       Use focal_epsilon=0.23, and max_focal_size=40.
     #       Use within_focal_priority_function=within_focal_h_sum_priority_function. This function
     #        (defined just above) is internally using the `HistoryBasedHeuristic`.
-    exit()  # TODO: remove!
-
+    a_star = AStarEpsilon(ShortestPathsBasedHeuristic,
+                          within_focal_priority_function=within_focal_h_sum_priority_function,
+                          focal_epsilon=0.23,
+                          max_focal_size=40)
+    res = a_star.solve_problem(map_problem)
+    print(res)
 
 def run_all_experiments():
     print('Running all experiments')
